@@ -32,7 +32,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                NavigationLink("Help", destination: Text("This application tracks your mistakes"))
+                NavigationLink("Help", destination: HelpView())
                     .padding(EDGE_INSETS)
                 NavigationLink("Notifications", destination: Text("TODO: Configure Notifications"))
                     .padding(EDGE_INSETS)
