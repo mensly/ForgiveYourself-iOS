@@ -33,8 +33,10 @@ struct ContentView: View {
         NavigationView {
             VStack(alignment: .leading) {
                 NavigationLink("Help", destination: HelpView())
+                    .accentColor(ACCENT_COLOR)
                     .padding(EDGE_INSETS)
                 NavigationLink("Notifications", destination: Text("TODO: Configure Notifications"))
+                    .accentColor(ACCENT_COLOR)
                     .padding(EDGE_INSETS)
                 TextField("Enter mistake", text: $mistake)
                     .padding(EDGE_INSETS)
@@ -45,17 +47,21 @@ struct ContentView: View {
                     mistakes.append(Mistake(id: UUID().description, text: mistake))
                     saveMistakes(mistakes: mistakes)
                     mistake = ""
-                }.padding(EDGE_INSETS)
+                }
+                    .accentColor(ACCENT_COLOR)
+                    .padding(EDGE_INSETS)
                 Button("Forgive Yourself") {
                     mistakes = []
                     saveMistakes(mistakes: mistakes)
-                }.padding(EDGE_INSETS)
+                }
+                    .accentColor(ACCENT_COLOR)
+                    .padding(EDGE_INSETS)
                 List(mistakes, id: \.id) { mistake in
                     Text(mistake.text)
                 }
             }
             .navigationBarTitle("Forgive Yourself")
-        }
+        }.accentColor(ACCENT_COLOR)
     }
 }
 

@@ -16,13 +16,13 @@ struct HelpView: View {
             Text("If you need help doing so, these numbers might be useful:")
             Button("Australia: BeyondBlue") {
                 EnvironmentValues.init().openURL(URL(string: "tel:1300224636")!)
-            }
+            }.accentColor(ACCENT_COLOR)
             Button("UK: SupportLine") {
                 EnvironmentValues.init().openURL(URL(string: "tel:01708765200")!)
-            }
+            }.accentColor(ACCENT_COLOR)
             Button("USA: SAMHSA") {
                 EnvironmentValues.init().openURL(URL(string: "tel:18009855990")!)
-            }
+            }.accentColor(ACCENT_COLOR)
             Text("Note: This app is not associated with the above services.")
             Spacer()
         }.padding()
