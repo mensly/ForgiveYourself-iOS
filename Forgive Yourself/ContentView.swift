@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-private let KEY_MISTAKES = "mistakes"
-
 struct Mistake {
     var id: String
     var text: String
 }
+
+private let EDGE_INSETS = EdgeInsets(top: NO_PADDING, leading: PADDING, bottom: NO_PADDING, trailing: PADDING)
 
 private func loadMistakes() -> [Mistake] {
     guard let mistakes = UserDefaults.standard.array(forKey: KEY_MISTAKES) else { return [] }
@@ -32,7 +32,12 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
+                NavigationLink("Help", destination: Text("This application tracks your mistakes"))
+                    .padding(EDGE_INSETS)
+                NavigationLink("Notifications", destination: Text("TODO: Configure Notifications"))
+                    .padding(EDGE_INSETS)
                 TextField("Enter mistake", text: $mistake)
+                    .padding(EDGE_INSETS)
                 Button("Add") {
                     if (mistake.isEmpty) {
                         return
@@ -40,11 +45,11 @@ struct ContentView: View {
                     mistakes.append(Mistake(id: UUID().description, text: mistake))
                     saveMistakes(mistakes: mistakes)
                     mistake = ""
-                }
+                }.padding(EDGE_INSETS)
                 Button("Forgive Yourself") {
                     mistakes = []
                     saveMistakes(mistakes: mistakes)
-                }
+                }.padding(EDGE_INSETS)
                 List(mistakes, id: \.id) { mistake in
                     Text(mistake.text)
                 }

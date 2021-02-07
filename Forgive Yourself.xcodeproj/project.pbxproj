@@ -13,6 +13,7 @@
 		310B82E725CFA1D500743100 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 310B82E625CFA1D500743100 /* Preview Assets.xcassets */; };
 		310B82F225CFA1D500743100 /* Forgive_YourselfTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B82F125CFA1D500743100 /* Forgive_YourselfTests.swift */; };
 		310B82FD25CFA1D500743100 /* Forgive_YourselfUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B82FC25CFA1D500743100 /* Forgive_YourselfUITests.swift */; };
+		310B830E25D0556C00743100 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310B830D25D0556C00743100 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		310B82F825CFA1D500743100 /* Forgive YourselfUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Forgive YourselfUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		310B82FC25CFA1D500743100 /* Forgive_YourselfUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forgive_YourselfUITests.swift; sourceTree = "<group>"; };
 		310B82FE25CFA1D500743100 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		310B830D25D0556C00743100 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				310B82E325CFA1D500743100 /* Assets.xcassets */,
 				310B82E825CFA1D500743100 /* Info.plist */,
 				310B82E525CFA1D500743100 /* Preview Content */,
+				310B830D25D0556C00743100 /* Constants.swift */,
 			);
 			path = "Forgive Yourself";
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 			files = (
 				310B82E225CFA1D100743100 /* ContentView.swift in Sources */,
 				310B82E025CFA1D100743100 /* Forgive_YourselfApp.swift in Sources */,
+				310B830E25D0556C00743100 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
