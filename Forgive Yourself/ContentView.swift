@@ -28,25 +28,20 @@ private func saveMistakes(mistakes: [Mistake]) {
 struct ContentView: View {
     @State private var mistakes: [Mistake] = loadMistakes()
     @State private var mistake: String = ""
+    @State private var showingClearPrompt = false
+    @State private var showingNotificationPrompt = false
+    @State private var showingNotifications = false
     
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                TextField("Enter mistake", text: $mistake)
+                TextField("Enter mistake", text: $mistake, onCommit: { addMistake() })
                     .padding(EDGE_INSETS)
-                Button("Add") {
-                    if (mistake.isEmpty) {
-                        return
-                    }
-                    mistakes.append(Mistake(id: UUID().description, text: mistake))
-                    saveMistakes(mistakes: mistakes)
-                    mistake = ""
-                }
+                Button("Add") { addMistake() }
                     .accentColor(ACCENT_COLOR)
                     .padding(EDGE_INSETS)
                 Button("Forgive Yourself") {
-                    mistakes = []
-                    saveMistakes(mistakes: mistakes)
+                    showingClearPrompt = true
                 }
                     .accentColor(ACCENT_COLOR)
                     .padding(EDGE_INSETS)
@@ -58,10 +53,37 @@ struct ContentView: View {
             .navigationBarItems(leading: NavigationLink("Help", destination: HelpView())
                                     .accentColor(ACCENT_COLOR)
                                     .padding(EDGE_INSETS),
-                                trailing: NavigationLink("Notifications", destination: NotificationView())
+                                trailing: NavigationLink(destination: NotificationView(), isActive: $showingNotifications, label: { Text("Notifications") })
                                     .accentColor(ACCENT_COLOR)
                                     .padding(EDGE_INSETS))
+            .alert(isPresented: $showingNotificationPrompt) {
+                Alert(title: Text("Would you like to configure a notification?"),
+                      primaryButton: .default(Text("Yes")) {
+                        showingNotifications = true
+                      },
+                      secondaryButton: .default(Text("No")))
+            }
+            .alert(isPresented: $showingClearPrompt) {
+                Alert(title: Text("Are you sure you have forgiven yourself?"),
+                      primaryButton: .default(Text("Yes")) {
+                        mistakes = []
+                        saveMistakes(mistakes: mistakes)
+                      },
+                      secondaryButton: .default(Text("No")))
+            }
         }.accentColor(ACCENT_COLOR)
+    }
+    
+    private func addMistake() {
+        if mistake.isEmpty {
+            return
+        }
+        mistakes.append(Mistake(id: UUID().description, text: mistake))
+        saveMistakes(mistakes: mistakes)
+        mistake = ""
+        if mistakes.count == 1 && !isNotificationEnabled() {
+            showingNotificationPrompt = true
+        }
     }
 }
 

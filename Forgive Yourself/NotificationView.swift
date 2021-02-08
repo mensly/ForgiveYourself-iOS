@@ -10,7 +10,7 @@ import UserNotifications
 
 private func loadTime() -> Date {
     let saved = UserDefaults.standard.double(forKey: KEY_NOTIF_TIME)
-    if (saved > 0) { return Date(timeIntervalSince1970: saved) }
+    if saved > 0 { return Date(timeIntervalSince1970: saved) }
     let cal = Calendar(identifier: .gregorian)
     var dateComponents = DateComponents()
     dateComponents.calendar = cal
@@ -30,8 +30,12 @@ private func getDateFormat() -> DateFormatter {
     return dateFormat
 }
 
+func isNotificationEnabled() -> Bool {
+    return UserDefaults.standard.string(forKey: KEY_NOTIF_ID) != nil
+}
+
 struct NotificationView: View {
-    @State private var notificationEnabled = UserDefaults.standard.string(forKey: KEY_NOTIF_ID) != nil
+    @State private var notificationEnabled = isNotificationEnabled()
     @State private var id = UserDefaults.standard.string(forKey: KEY_NOTIF_ID) ?? UUID().uuidString
     @State private var time = loadTime()
     
