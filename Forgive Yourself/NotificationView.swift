@@ -91,8 +91,7 @@ struct NotificationView: View {
                     
                     UNUserNotificationCenter.current().add(request) { error in
                         if error == nil {
-                            print("Set \(notificationEnabled) \(time.timeIntervalSince1970)")
-                            UserDefaults.standard.set(5, forKey: KEY_NOTIF_TIME)
+                            UserDefaults.standard.set(time.timeIntervalSince1970, forKey: KEY_NOTIF_TIME)
                         }
                         else {
                             notificationEnabled = false
@@ -103,9 +102,6 @@ struct NotificationView: View {
                     print(error.localizedDescription)
                 }
             }
-        }
-        else {
-            print("Set \(notificationEnabled) \(time)")
         }
     }
 }

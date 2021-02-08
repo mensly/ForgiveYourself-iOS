@@ -43,6 +43,7 @@ struct ContentView: View {
                 Button("Forgive Yourself") {
                     showingClearPrompt = true
                 }
+                    .disabled(mistakes.count == 0)
                     .accentColor(ACCENT_COLOR)
                     .padding(EDGE_INSETS)
                 List(mistakes, id: \.id) { mistake in
@@ -63,6 +64,7 @@ struct ContentView: View {
                       },
                       secondaryButton: .default(Text("No")))
             }
+        }.accentColor(ACCENT_COLOR)
             .alert(isPresented: $showingClearPrompt) {
                 Alert(title: Text("Are you sure you have forgiven yourself?"),
                       primaryButton: .default(Text("Yes")) {
@@ -71,7 +73,6 @@ struct ContentView: View {
                       },
                       secondaryButton: .default(Text("No")))
             }
-        }.accentColor(ACCENT_COLOR)
     }
     
     private func addMistake() {
