@@ -26,7 +26,7 @@ private func saveMistakes(mistakes: [Mistake]) {
 }
 
 struct ContentView: View {
-    @State var mistakes: [Mistake] = loadMistakes()
+    @State private var mistakes: [Mistake] = loadMistakes()
     @State private var mistake: String = ""
     
     var body: some View {
@@ -35,7 +35,7 @@ struct ContentView: View {
                 NavigationLink("Help", destination: HelpView())
                     .accentColor(ACCENT_COLOR)
                     .padding(EDGE_INSETS)
-                NavigationLink("Notifications", destination: Text("TODO: Configure Notifications"))
+                NavigationLink("Notifications", destination: NotificationView())
                     .accentColor(ACCENT_COLOR)
                     .padding(EDGE_INSETS)
                 TextField("Enter mistake", text: $mistake)
