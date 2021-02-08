@@ -32,12 +32,6 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                NavigationLink("Help", destination: HelpView())
-                    .accentColor(ACCENT_COLOR)
-                    .padding(EDGE_INSETS)
-                NavigationLink("Notifications", destination: NotificationView())
-                    .accentColor(ACCENT_COLOR)
-                    .padding(EDGE_INSETS)
                 TextField("Enter mistake", text: $mistake)
                     .padding(EDGE_INSETS)
                 Button("Add") {
@@ -61,6 +55,12 @@ struct ContentView: View {
                 }
             }
             .navigationBarTitle("Forgive Yourself")
+            .navigationBarItems(leading: NavigationLink("Help", destination: HelpView())
+                                    .accentColor(ACCENT_COLOR)
+                                    .padding(EDGE_INSETS),
+                                trailing: NavigationLink("Notifications", destination: NotificationView())
+                                    .accentColor(ACCENT_COLOR)
+                                    .padding(EDGE_INSETS))
         }.accentColor(ACCENT_COLOR)
     }
 }
