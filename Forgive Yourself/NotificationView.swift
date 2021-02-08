@@ -99,6 +99,7 @@ struct NotificationView: View {
                         }
                     }
                 } else if let error = error {
+                    notificationEnabled = false
                     print(error.localizedDescription)
                 }
             }
