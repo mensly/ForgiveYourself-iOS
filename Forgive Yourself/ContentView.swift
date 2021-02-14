@@ -40,6 +40,7 @@ struct ContentView: View {
                 Button("Add") { addMistake() }
                     .accentColor(ACCENT_COLOR)
                     .padding(EDGE_INSETS)
+                    .disabled(mistake.isEmpty)
                 Button("Forgive Yourself") {
                     showingClearPrompt = true
                 }
