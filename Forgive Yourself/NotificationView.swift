@@ -62,7 +62,7 @@ struct NotificationView: View {
         }
 
         
-        VStack() {
+        VStack(spacing: 30) {
             Toggle("Enable Notification", isOn: enabledBinding)
             DatePicker(selection: timeBinding, in: PartialRangeFrom(Date())) {
                 Text("Time")

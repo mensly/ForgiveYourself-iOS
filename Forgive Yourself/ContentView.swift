@@ -26,6 +26,8 @@ private func saveMistakes(mistakes: [Mistake]) {
 }
 
 struct ContentView: View {
+    @Environment(\.colorScheme) var colorScheme
+
     @State private var mistakes: [Mistake] = loadMistakes()
     @State private var mistake: String = ""
     @State private var showingClearPrompt = false
@@ -34,22 +36,52 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading) {
-                TextField("Enter mistake", text: $mistake, onCommit: { addMistake() })
-                    .padding(EDGE_INSETS)
-                Button("Add") { addMistake() }
-                    .accentColor(ACCENT_COLOR)
-                    .padding(EDGE_INSETS)
-                    .disabled(mistake.isEmpty)
-                Button("Forgive Yourself") {
-                    showingClearPrompt = true
+            ZStack {
+                VStack(alignment: .leading) {
+                    Divider()
+                        .padding(.horizontal)
+                    HStack {
+                        TextField("Enter mistake", text: $mistake, onCommit: { addMistake() })
+                            .padding(EDGE_INSETS)
+                            .keyboardType(.webSearch)
+
+                        Button("Add") { addMistake() }
+                            .accentColor(ACCENT_COLOR)
+                            .padding(EDGE_INSETS)
+                            .disabled(mistake.isEmpty)
+                    }
+                        .padding(.vertical)
+
+                    if colorScheme == .dark {
+                        Divider()
+                            .padding(.horizontal)
+                    }
+
+                    List(mistakes, id: \.id) { mistake in
+                        Text(mistake.text)
+                    }
+                        .listStyle(InsetGroupedListStyle())
                 }
-                    .disabled(mistakes.count == 0)
-                    .accentColor(ACCENT_COLOR)
-                    .padding(EDGE_INSETS)
-                List(mistakes, id: \.id) { mistake in
-                    Text(mistake.text)
+
+                VStack {
+                    Spacer()
+                    Button(action: {
+                        showingClearPrompt = true
+                    }) {
+                        Text("Forgive Yourself")
+                            .fontWeight(.bold)
+                            .font(.title)
+                    }
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(mistakes.count == 0 ? Color.gray : ACCENT_COLOR)
+                        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                        .disabled(mistakes.count == 0)
+                        .opacity(mistakes.count == 0 ? 0.7 : 1.0)
+                        .padding(EDGE_INSETS)
                 }
+                    .padding()
             }
             .navigationBarTitle("Forgive Yourself")
             .navigationBarItems(leading: NavigationLink("Help", destination: HelpView())
