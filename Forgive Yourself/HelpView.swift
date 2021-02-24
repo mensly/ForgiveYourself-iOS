@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HelpView: View {
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 30) {
             Text("The purpose of this application is to help track your mistakes during the year.")
             Text("At least once a year you should forgive yourself and wipe the slate clean.")
             Text("You cannot edit or remove individual items, only forgive yourself by wiping the slate.")
